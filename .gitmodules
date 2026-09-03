@@ -1,0 +1,3 @@
+[submodule "modules/zsa"]
+	path = modules/zsa
+	url = gh:zsa/qmk_modules
