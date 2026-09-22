@@ -4,7 +4,7 @@ This contains keymaps for the following boards.
 
 ## Corne v4.1
 
-![eddsteel keymap for corne v4.1](maps/crkbd-rev4_1-standard-eddsteel.svg.png)
+![eddsteel keymap for corne v4.1](maps/crkbd-rev4_1-standard-eddsteel.png)
 
 ## ZSA Moonlander v1
 
