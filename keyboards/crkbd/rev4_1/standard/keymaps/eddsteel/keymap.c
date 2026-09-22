@@ -81,6 +81,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KE_FRSQ LSA(KC_RBRC)
 #define KE_LCGQ LCG(KC_Q)
 
+#define KE_LAGE LAG(KC_ESC)
+
 enum custom_keycodes {
     KE_MAC1 = SAFE_RANGE,
     KE_MAC2
@@ -119,21 +121,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           KE_LAY3, KE_L1SP,  KE_L2TA,    KE_L2EN, KE_L1BS, KE_SHFT
     ),
     [NNUM] = LAYOUT_split_3x6_3_ex2(
-       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_SLEP,    _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_WBAK, QK_BOOT,
-       _______,    KC_6, KE_LCK7, KE_LAK8, KE_LGK9,    KC_0, _______,    _______, KC_LEFT, KE_RGDN, KE_LAUP, KE_RCRT, KC_WFWD, _______,
-       _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,  KC_DOT,                      MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, KC_PLUS, _______,
+       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_SLEP,    _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_WBAK, _______,
+       _______,    KC_6, KE_LCK7, KE_LAK8, KE_LGK9,    KC_0, _______,    KC_UNDS, KC_LEFT, KE_RGDN, KE_LAUP, KE_RCRT, KC_WFWD, _______,
+       _______, KC_PLUS, KC_COMM,  KC_DOT, KC_MINS, KC_COLN,                      MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, _______, _______,
                                            KC_BSPC, _______, KE_STAB,    _______,  KC_DEL, _______
     ),
     [FUNN] = LAYOUT_split_3x6_3_ex2(
        QK_BOOT, KC_MFFD, KC_VOLU,  KC_INS, KC_BRIU, _______, _______,    KE_LCGQ,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F15, QK_BOOT,
-       _______, KC_MPLY, KE_LCMT, KE_LADL, KE_LGPS, _______, _______,    _______,   KC_F5, KE_RGF6, KE_LAF7, KE_RCF8,  KC_F14, _______,
+       _______, KC_MPLY, KE_LCMT, KE_LADL, KE_LGPS, _______, _______,    KE_LAGE,   KC_F5, KE_RGF6, KE_LAF7, KE_RCF8,  KC_F14, _______,
        _______, KC_MRWD, KC_VOLD, KC_PAUS, KC_BRID, _______,                        KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_F13, _______,
                                            _______,   TG(4), _______,    KE_LGEN,   TG(4), _______
     ),
     [SYMB] = LAYOUT_split_3x6_3_ex2(
-       KC_TILD, KC_MINS, KE_NDSH, KE_MDSH, KC_UNDS,  KC_GRV, KE_ELPS,    KC_QUES, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_LCBR, KC_RCBR,
-       KE_DEGR, KC_PIPE, KE_LCBS, KE_LAPD, KE_LGSL, KC_QUOT, KC_COLN,    KC_SCLN, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, _______,
-       KE_BULL, KE_FLSQ, KE_FLDQ, KE_FRDQ, KE_FRSQ, KC_DQUO,                      KC_PLUS,  KC_EQL,   KC_LT,   KC_GT, KC_LBRC, _______,
+        KC_GRV, KC_MINS, KE_NDSH, KE_MDSH, KE_ELPS, KC_TILD, KC_COLN,    KC_QUES, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_LCBR, KC_RCBR,
+       KC_DQUO, KC_PIPE, KE_LCBS, KE_LAPD, KE_LGSL, KE_DEGR, KC_SCLN,    KC_UNDS, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
+       KC_QUOT, KE_FLSQ, KE_FLDQ, KE_FRDQ, KE_FRSQ, KE_BULL,                      KC_PLUS,  KC_EQL,   KC_LT,   KC_GT, KC_LBRC, KC_RBRC,
                                            _______, _______, _______,    KC_ENT,  KC_SPC,   KC_APP
     ),
     [KYBD] = LAYOUT_split_3x6_3_ex2(
