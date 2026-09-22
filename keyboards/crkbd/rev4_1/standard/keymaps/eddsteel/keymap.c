@@ -41,8 +41,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KE_LCK7 LCTL_T(KC_7)
 #define KE_LAK8 LALT_T(KC_8)
 #define KE_LGK9 LGUI_T(KC_9)
-#define KE_RGDN RGUI_T(KC_UP)
-#define KE_LAUP LALT_T(KC_DOWN)
+#define KE_RGDN RGUI_T(KC_DOWN)
+#define KE_LAUP LALT_T(KC_UP)
 #define KE_RCRT RCTL_T(KC_RGHT)
 
 // function home row
