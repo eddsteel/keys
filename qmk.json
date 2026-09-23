@@ -3,6 +3,6 @@
     "build_targets": [
         ["crkbd/rev4_1/standard", "eddsteel"],
         ["kbdfans/kbd75/rev1", "eddsteel"],
-        ["zsa/moonlander", "eddsteel"]
+        ["zsa/moonlander/reva", "eddsteel"]
     ]
 }
