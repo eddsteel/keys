@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           KE_LAY3, KE_L1SP,  KE_L2TA,    KE_L2EN, KE_L1BS, KE_SHFT
     ),
     [NNUM] = LAYOUT_split_3x6_3_ex2(
-       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_SLEP,    _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_WBAK, _______,
+       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, _______,    _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_WBAK, _______,
        _______,    KC_6, KE_LCK7, KE_LAK8, KE_LGK9,    KC_0, _______,    KC_UNDS, KC_LEFT, KE_RGDN, KE_LAUP, KE_RCRT, KC_WFWD, _______,
        _______, KC_PLUS, KC_COMM,  KC_DOT, KC_MINS, KC_COLN,                      MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, _______, _______,
                                            KC_BSPC, _______, KE_STAB,    _______,  KC_DEL, _______
