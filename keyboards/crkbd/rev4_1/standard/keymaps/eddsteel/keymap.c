@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV, KC_MINS, KE_NDSH, KE_MDSH, KE_ELPS, KC_TILD, KC_COLN,    KC_QUES, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_LCBR, KC_RCBR,
        KC_DQUO, KC_PIPE, KE_LCBS, KE_LAPD, KE_LGSL, KE_DEGR, KC_SCLN,    KC_UNDS, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
        KC_QUOT, KE_FLSQ, KE_FLDQ, KE_FRDQ, KE_FRSQ, KE_BULL,                      KC_PLUS,  KC_EQL,   KC_LT,   KC_GT, KC_LBRC, KC_RBRC,
-                                           _______, _______, _______,    KC_ENT,  KC_SPC,   KC_APP
+                                            KC_ENT, _______, _______,    _______,  KC_SPC,   KC_APP
     ),
     [KYBD] = LAYOUT_split_3x6_3_ex2(
        QK_BOOT, XXXXXXX, XXXXXXX, KE_MAC1, KE_MAC2, XXXXXXX, RGB_M_P,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
