@@ -127,8 +127,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            KC_BSPC, _______, KE_STAB,    _______,  KC_DEL, _______
     ),
     [FUNN] = LAYOUT_split_3x6_3_ex2(
-       QK_BOOT, KC_MFFD, KC_VOLU,  KC_INS, KC_BRIU, _______, _______,    KE_LCGQ,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F15, QK_BOOT,
-       _______, KC_MPLY, KE_LCMT, KE_LADL, KE_LGPS, _______, _______,    KE_LAGE,   KC_F5, KE_RGF6, KE_LAF7, KE_RCF8,  KC_F14, _______,
+       QK_BOOT, KC_MFFD, KC_VOLU,  KC_INS, KC_BRIU, _______, KC_SLEP,    KE_LCGQ,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F15, QK_BOOT,
+       _______, KC_MPLY, KE_LCMT, KE_LADL, KE_LGPS, _______, KC_POW,    KE_LAGE,   KC_F5, KE_RGF6, KE_LAF7, KE_RCF8,  KC_F14, _______,
        _______, KC_MRWD, KC_VOLD, KC_PAUS, KC_BRID, _______,                        KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_F13, _______,
                                            _______,   TG(4), _______,    KE_LGEN,   TG(4), _______
     ),
