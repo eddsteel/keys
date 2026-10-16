@@ -22,21 +22,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-// pinky mods
-#define KE_LAGV LALT_T(KC_GRV)
-#define KE_LAQT LALT_T(KC_QUOT)
-#define KE_LGLB LGUI_T(KC_LBRC)
-#define KE_RGRB RGUI_T(KC_RBRC)
-
 // base home row
 #define KE_LCKS LCTL_T(KC_S)
 #define KE_LAKD LALT_T(KC_D)
 #define KE_LGKF LGUI_T(KC_F)
-#define KE_MEKG MEH_T(KC_G)
-#define KE_HYKH ALL_T(KC_H)
 #define KE_RGKJ RGUI_T(KC_J)
 #define KE_LAKK LALT_T(KC_K)
 #define KE_LCKL LCTL_T(KC_L)
+
+// symbol home row
+#define KE_LCBS LCTL_T(KC_BSLS)
+#define KE_LASC LALT_T(KC_SCLN)
+#define KE_LGCM LGUI_T(KC_COMM)
+#define KE_RGDT RGUI_T(KC_DOT)
+#define KE_LAMN LALT_T(KC_MINS)
+#define KE_LCSL LCTL_T(KC_SLSH)
 
 // nav/num home row
 #define KE_LCK7 LCTL_T(KC_7)
@@ -65,34 +65,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KE_RCX RCTL(KC_X)
 #define KE_RCZ RCTL(KC_Z)
 
-// symbol home row
-#define KE_LCBS LCTL_T(KC_BSLS)
-#define KE_LAPD LALT_T(KC_DOT)
-#define KE_LGSL LGUI_T(KC_SLSH)
-// symbols are out of range
-
 // thumbs
-#define KE_LAY3 OSL(3)
-#define KE_L1SP LT(1, KC_SPC)
-#define KE_L2TA LT(2, KC_TAB)
-#define KE_L2EN LT(2, KC_ENT)
-#define KE_L1BS LT(1, KC_BSPC)
+#define KE_LSYM OSL(SYM)
+#define KE_LNSP LT(NUM, KC_SPC)
+#define KE_LFTA LT(FUN, KC_TAB)
+#define KE_LFEN LT(FUN, KC_ENT)
+#define KE_LNBS LT(NUM, KC_BSPC)
 #define KE_SHFT OSM(MOD_LSFT)
 
 // keys with mods
 #define KE_STAB S(KC_TAB)
+#define KE_SENT S(KC_ENT)
 #define KE_LGEN G(KC_ENT)
 #define KE_LGTB G(KC_TAB)
-#define KE_NDSH LSA(KC_MINS)
-#define KE_MDSH A(KC_MINS)
-#define KE_ELPS A(KC_SCLN)
-#define KE_DEGR LSA(KC_8)
+#define KE_NDSH A(KC_MINS)
+#define KE_MDSH LSA(KC_MINS)
 #define KE_BULL A(KC_8)
 #define KE_FLSQ A(KC_RBRC)
 #define KE_FLDQ A(KC_LBRC)
 #define KE_FRDQ LSA(KC_LBRC)
 #define KE_FRSQ LSA(KC_RBRC)
 #define KE_LCGQ LCG(KC_Q)
+#define KE_LCSS LCS(KC_SPC)
+#define KE_LGAE LAG(KC_ESC)
 
 enum custom_keycodes {
     KE_MAC1 = SAFE_RANGE,
@@ -100,11 +95,11 @@ enum custom_keycodes {
 };
 
 enum {
-  BASE = 0,
-  NNUM,
-  FUNN,
-  SYMB,
-  KYBD,
+  BSE = 0, // base
+  SYM, // symbols
+  NUM, // numbers / navigation
+  FUN, // function
+  KBD, // keyboard
   NLYRS
 };
 
@@ -124,35 +119,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT_split_3x6_3_ex2(
+  'L', 'L', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'R', 'R',
+  'L', 'L', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'R', 'R',
+  'L', 'L', 'L', 'L', 'L', 'L',           'R', 'R', 'R', 'R', 'R', 'R',
+                      '*', '*', '*', '*', '*', '*'
+);
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [BASE] = LAYOUT_split_3x6_3_ex2(
-        KE_LAGV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,  KC_BSLS,     KC_EQL,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KE_LAQT,
-        SC_LCPO,  KC_A, KE_LCKS, KE_LAKD, KE_LGKF, KE_MEKG,   KC_ESC,    KC_MINS, KE_HYKH, KE_RGKJ, KE_LAKK, KE_LCKL, KC_SCLN, SC_RCPC,
-        KE_LGLB,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KE_RGRB,
-                                          KE_LAY3, KE_L1SP,  KE_L2TA,    KE_L2EN, KE_L1BS, KE_SHFT
+    [BSE] = LAYOUT_split_3x6_3_ex2(
+         KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_MEH,     KC_MEH,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSLS,
+         KC_GRV,    KC_A, KE_LCKS, KE_LAKD, KE_LGKF,    KC_G,  KC_HYPR,    KC_HYPR,    KC_H, KE_RGKJ, KE_LAKK, KE_LCKL, KC_SCLN, KC_QUOT,
+        SC_LSPO,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RPRN,
+                                            KE_LSYM, KE_LNSP,  KE_LFEN,    KE_LFTA, KE_LNBS, KE_SHFT
     ),
-    [NNUM] = LAYOUT_split_3x6_3_ex2(
-       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, _______,    _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_WFWD, _______,
-       _______,    KC_6, KE_LCK7, KE_LAK8, KE_LGK9,    KC_0, _______,    KC_UNDS, KC_LEFT, KE_RGDN, KE_LAUP, KE_LCRT, KC_WBAK, _______,
-       _______, KC_PLUS, KC_COMM,  KC_DOT, KC_MINS, KC_COLN,                      MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, _______, _______,
-                                           KC_BSPC, _______, KE_STAB,    _______,  KC_DEL, _______
+    [SYM] = LAYOUT_split_3x6_3_ex2(
+        KE_NDSH, KC_EXLM,   KC_AT, KC_HASH, KC_AMPR, KC_DQUO, KE_FLDQ,    KE_FRDQ, KC_PERC, KC_CIRC, KC_ASTR,  KC_DLR, KC_LCBR, KC_RCBR,
+        KE_MDSH, KC_UNDS, KE_LCBS, KE_LASC, KE_LGCM, KC_QUOT, KE_FLSQ,    KE_FRSQ, KC_QUES, KE_RGDT, KE_LAMN, KE_LCSL, KC_LBRC, KC_RBRC,
+        KE_BULL, KC_PIPE, KC_COLN,  KC_EQL,  KC_APP,  KC_GRV,                      KC_TILD, KC_PLUS,   KC_LT,   KC_GT, KC_LPRN, KC_RPRN,
+                                            _______,OSL(KBD), _______,     KC_ENT,  KC_SPC, OSL(NUM)
     ),
-    [FUNN] = LAYOUT_split_3x6_3_ex2(
-       KC_MPLY,  KE_RCQ,  KE_RCW,  KC_INS,  KE_RCR, KC_BRIU, KC_SLEP,    KE_LCGQ,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F15, KC_VOLU,
-       KC_MRWD,  KE_RCA, KE_LCIN, KE_LASL, KE_LGPS,  KE_RCF, QK_BOOT,    QK_BOOT,   KC_F5, KE_RGF6, KE_LAF7, KE_LCF8,  KC_F14, KC_VOLD,
-       KC_MFFD,  KE_RCZ,  KE_RCX,  KE_RCC,  KE_RCV, KC_BRID,                        KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_F13, KC_MUTE,
-                                           _______,   TG(4), KE_LGTB,    KE_LGEN,   TG(4), _______
+    [NUM] = LAYOUT_split_3x6_3_ex2(
+        _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KE_LGAE,    KE_LCSS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_WFWD, _______,
+        _______,    KC_6, KE_LCK7, KE_LAK8, KE_LGK9,    KC_0, _______,    _______, KC_LEFT, KE_RGDN, KE_LAUP, KE_LCRT, KC_WBAK, _______,
+        _______, KC_PLUS, KC_COMM,  KC_DOT, KC_MINS, KC_COLN,                      MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, _______, _______,
+                                            KC_BSPC,  KC_ESC, KE_SENT,    KE_STAB,  KC_DEL, _______
     ),
-    [SYMB] = LAYOUT_split_3x6_3_ex2(
-        KC_GRV, KC_MINS, KE_NDSH, KE_MDSH, KE_ELPS, KC_TILD, KC_COLN,    KC_QUES, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_LCBR, KC_RCBR,
-       KC_DQUO, KC_PIPE, KE_LCBS, KE_LAPD, KE_LGSL, KE_DEGR, KC_SCLN,    KC_UNDS, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
-       KC_QUOT, KE_FLSQ, KE_FLDQ, KE_FRDQ, KE_FRSQ, KE_BULL,                      KC_PLUS,  KC_EQL,   KC_LT,   KC_GT, KC_LBRC, KC_RBRC,
-                                            KC_ENT, _______, _______,    _______,  KC_SPC,   KC_APP
+    [FUN] = LAYOUT_split_3x6_3_ex2(
+        KC_MPLY,  KE_RCQ,  KE_RCW,  KC_INS,  KE_RCR, KC_BRIU, KC_SLEP,    KE_LCGQ,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F15, KC_VOLU,
+        KC_MRWD,  KE_RCA, KE_LCIN, KE_LASL, KE_LGPS,  KE_RCF, QK_BOOT,    QK_BOOT,   KC_F5, KE_RGF6, KE_LAF7, KE_LCF8,  KC_F14, KC_VOLD,
+        KC_MFFD,  KE_RCZ,  KE_RCX,  KE_RCC,  KE_RCV, KC_BRID,                        KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_F13, KC_MUTE,
+                                           _______,  TG(KBD), KE_LGEN,    KE_LGTB, TG(KBD), _______
     ),
-    [KYBD] = LAYOUT_split_3x6_3_ex2(
-       QK_BOOT, XXXXXXX, XXXXXXX, KE_MAC1, KE_MAC2, XXXXXXX, RGB_M_P,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
-       _______, RM_HUEU, RM_SATU, RM_VALU, RM_SPDU, XXXXXXX, RM_TOGG,    XXXXXXX, RGB_M_R, RGB_M_B,RGB_M_SW, XXXXXXX, XXXXXXX, XXXXXXX,
-       _______, RM_HUED, RM_SATD, RM_VALD, RM_SPDD, RM_NEXT,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                             _______, TO(0), _______,    _______,   TO(0), _______
+    [KBD] = LAYOUT_split_3x6_3_ex2(
+        QK_BOOT, XXXXXXX, XXXXXXX, KE_MAC1, KE_MAC2, XXXXXXX, RGB_M_P,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
+        _______, RM_HUEU, RM_SATU, RM_VALU, RM_SPDU, XXXXXXX, RM_TOGG,    XXXXXXX, RGB_M_R, RGB_M_B,RGB_M_SW, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, RM_HUED, RM_SATD, RM_VALD, RM_SPDD, RM_NEXT,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                            TO(BSE), TO(BSE), TO(BSE),    TO(BSE), TO(BSE), TO(BSE)
     )
 };

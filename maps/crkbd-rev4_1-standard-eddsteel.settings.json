@@ -1,0 +1,46 @@
+{
+  "title": "crkbd-rev4_1-standard-eddsteel",
+  "board": "crkbd/rev4_1/standard",
+  "layout": "LAYOUT_split_3x6_3_ex2",
+  "layers": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "names": {
+    "0": "BSE: base",
+    "1": "SYM: symbol",
+    "2": "NUM: number and navigation",
+    "3": "FUN: function",
+    "4": "KBD: keyboard"
+  },
+  "labels": {
+    "KC_WBAK": "Back",
+    "KC_WFWD": "Fwd",
+    "SC_LCPO": "( (ctrl)",
+    "SC_RCPC": ") (ctrl)",
+    "LCG(KC_Q)": "Lock",
+    "OSL(SYM)": "Layer SYM (one-shot)",
+    "OSL(NUM)": "Layer NUM (one-shot)",
+    "OSL(KBD)": "Layer KBD (one-shot)",
+    "TG(KBD)": "Layer KBD (toggle)",
+    "TO(BSE)": "Layer BSE",
+    "LSA(KC_MINS)": "—",
+    "A(KC_MINS)": "–",
+    "LSA(KC_LBRC)": "”",
+    "LSA(KC_RBRC)": "’",
+    "A(KC_LBRC)": "“",
+    "A(KC_RBRC)": "‘",
+    "A(KC_8)": "•",
+    "MS_WHLL": "Wheel ←",
+    "MS_WHLD": "Wheel ↓",
+    "MS_WHLU": "Wheel ↑",
+    "MS_WHLR": "Wheel →",
+    "KC_HYPR": "Hyper",
+    "KC_MEH": "Meh",
+    "KE_MAC1": "Macro 1",
+    "KE_MAC2": "Macro 2"
+  }
+}
